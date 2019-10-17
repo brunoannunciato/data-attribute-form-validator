@@ -8,13 +8,25 @@ fields.forEach(field => {
 const validateRequiredFields = event => {
 	const element = event.target
 
-	console.log(element.getAttribute('required'))
-
 	if (element.getAttribute('data-error') && !element.value && element.getAttribute('required') !== null) {
 		handleError.throwError(event)
 	} else {
 		handleError.clearError(event)
 	}
+}
+
+const validatePatterns = event => {
+	const patterns = {
+		phone: data =>  /^[1-9]{8,11}$/.test(data),
+		email: data => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(data)
+	}
+	const element = event.target
+
+	patterns[element.getAttribute('data-validation')] &&
+	patterns[element.getAttribute('data-validation')](element.value) ?
+	handleError.clearError(event) :
+	handleError.throwError(event)
+	
 }
 
 const handleError = {
@@ -40,6 +52,7 @@ const validateField = () => {
 	fields.forEach( field => {
 		field.addEventListener('blur', event => {
 			validateRequiredFields(event)
+			validatePatterns(event)
 		})
 	})
 }
