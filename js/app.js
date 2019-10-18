@@ -27,10 +27,12 @@ const validatePatterns = event => {
 	}
 	const element = event.target
 
-	patterns[element.getAttribute('data-validation')] !== null|''|false &&
-	patterns[element.getAttribute('data-validation')](element.value) ?
-	handleError.clearError(event) :
-	handleError.throwError(event)
+	if (element.value.length > 0) {
+		patterns[element.getAttribute('data-validation')] !== null|''|false &&
+		patterns[element.getAttribute('data-validation')](element.value) ?
+		handleError.clearError(event) :
+		handleError.throwError(event)
+	}
 	
 }
 
