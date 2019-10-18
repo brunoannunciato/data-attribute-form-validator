@@ -7,8 +7,12 @@ fields.forEach(field => {
 
 const validateRequiredFields = event => {
 	const element = event.target
+	let errorAdded = element.getAttribute('data-error'),
+		value = element.value,
+		requiredAttr = element.getAttribute('required')
 
-	if (element.getAttribute('data-error') && !element.value && element.getAttribute('required') !== null) {
+
+	if (errorAdded && !value && requiredAttr !== null) {
 		handleError.throwError(event)
 	} else {
 		handleError.clearError(event)
@@ -17,7 +21,7 @@ const validateRequiredFields = event => {
 
 const validatePatterns = event => {
 	const patterns = {
-		phone: data =>  /^\(?[0-9]{2}\)?\s?[0-9]{4,5}-?[0-9]{4}$/.test(data),
+		phone: data => /^\(?[0-9]{2}\)?\s?[0-9]{4,5}-?[0-9]{4}$/.test(data),
 		email: data => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(data),
 		cep: data => /^[0-9]{5}-?[0-9]{3}$/.test(data)
 	}
