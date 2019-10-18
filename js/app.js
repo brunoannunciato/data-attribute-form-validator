@@ -17,13 +17,13 @@ const validateRequiredFields = event => {
 
 const validatePatterns = event => {
 	const patterns = {
-		phone: data =>  /^[1-9]{8,11}$/.test(data),
+		phone: data =>  /^\(?[0-9]{2}\)?\s?[0-9]{4,5}-?[0-9]{4}$/.test(data),
 		email: data => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(data),
 		cep: data => /^[0-9]{5}-?[0-9]{3}$/.test(data)
 	}
 	const element = event.target
 
-	patterns[element.getAttribute('data-validation')] &&
+	patterns[element.getAttribute('data-validation')] !== null|''|false &&
 	patterns[element.getAttribute('data-validation')](element.value) ?
 	handleError.clearError(event) :
 	handleError.throwError(event)
