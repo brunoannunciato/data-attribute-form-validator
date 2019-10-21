@@ -18,8 +18,13 @@ const handleGlobalErrorObject = {
 		formErrors[formName].push(errorField['name'])
 	},
 	removeError: errorField => {
-		for (let i = 0; i < formErrors.length; i++) {
-			(formErrors[i] == errorField['name']) && formErrors.splice(i, 1);
+		const formName = errorField.closest('form').getAttribute('name')
+
+		for (let i = 0; i < formErrors[formName].length; i++) {
+			
+			if (formErrors[formName][i] == errorField.name) {
+				formErrors[formName].splice(i, 1);
+			}
 		}
 	}
 }

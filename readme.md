@@ -13,7 +13,15 @@ Importe o script no final do html
  -  **data-validation:** *(String: name | phone | email | cep)*: Define qual o tipo de valor que o campo aceitará;
  -  **data-error:** *(String)*: Mensagem de erro que será exibida;
 
- ## Objeto global:
+ ## Exemplos:
+
+ ```
+ <label for="email">
+    <input id="email" type="text" placeholder="Email" name="email" data-validation="email" data-error="Por favor, insira o seu email.">
+</label>
+ ```
+
+## Objeto global:
 
  `formErrors`
  
