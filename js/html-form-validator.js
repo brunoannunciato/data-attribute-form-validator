@@ -5,7 +5,24 @@ fields.forEach(field => {
 	field.setAttribute('show-error', 0)
 })
 
-const formErrors = []
+const formErrors = {}
+
+const handleGlobalErrorObject = {
+	pushError: errorField => {
+		const formName = errorField.closest('form').getAttribute('name');
+
+		if (!formErrors[formName]) {
+			formErrors[formName] = [];
+		}
+		
+		formErrors[formName].push(errorField['name'])
+	},
+	removeError: errorField => {
+		for (let i = 0; i < formErrors.length; i++) {
+			(formErrors[i] == errorField['name']) && formErrors.splice(i, 1);
+		}
+	}
+}
 
 const validateRequiredFields = event => {
 	const element = event.target
@@ -48,7 +65,7 @@ const handleError = {
 	
 		element.getAttribute('show-error') == 1 && element.parentElement.appendChild(errorElement)
 
-		formErrors.push(element.name)
+		handleGlobalErrorObject.pushError(element)
 
 	},
 	clearError: event => {
@@ -58,9 +75,7 @@ const handleError = {
 		element.setAttribute('show-error', 0)
 		error[0] && error[0].remove()
 
-		for (let i = 0; i < formErrors.length; i++) {
-			(formErrors[i] == element.name) && formErrors.splice(i, 1);
-		}
+		handleGlobalErrorObject.removeError(element)
 	}
 }
 
