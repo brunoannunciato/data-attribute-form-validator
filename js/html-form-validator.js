@@ -5,6 +5,8 @@ fields.forEach(field => {
 	field.setAttribute('show-error', 0)
 })
 
+const formErrors = []
+
 const validateRequiredFields = event => {
 	const element = event.target
 	let errorAdded = element.getAttribute('data-error'),
@@ -27,8 +29,7 @@ const validatePatterns = event => {
 	}
 	const element = event.target
 
-	if (element.value.length > 0) {
-		patterns[element.getAttribute('data-validation')] !== null|''|false &&
+	if (element.value.length > 0 && patterns[element.getAttribute('data-validation')]) {
 		patterns[element.getAttribute('data-validation')](element.value) ?
 		handleError.clearError(event) :
 		handleError.throwError(event)
@@ -46,6 +47,7 @@ const handleError = {
 		element.setAttribute('show-error', parseInt(element.getAttribute('show-error')) + 1)
 	
 		element.getAttribute('show-error') == 1 && element.parentElement.appendChild(errorElement)
+
 	},
 	clearError: event => {
 		const element = event.target
