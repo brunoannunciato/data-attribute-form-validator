@@ -1,4 +1,4 @@
-# HTML form validator
+# data-attribute-form-validator
 
 Lib usada para validar campos de formulário ultilizando data-attributes.
 
@@ -6,7 +6,7 @@ Lib usada para validar campos de formulário ultilizando data-attributes.
 
 Importe o script no final do html
 
-`<script src="./js/html-form-valitador.js"></script>`
+`<script src="./js/data-attribute-form-validator.js"></script>`
 
 ## Atributos:
 
