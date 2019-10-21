@@ -99,7 +99,6 @@ const validateForm = () => {
 
 			if (formErrors[formName][0]) {
 				event.preventDefault()
-				console.log(event.target)
 			}
 		})
 	})
