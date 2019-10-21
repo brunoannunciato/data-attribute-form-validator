@@ -48,12 +48,19 @@ const handleError = {
 	
 		element.getAttribute('show-error') == 1 && element.parentElement.appendChild(errorElement)
 
+		formErrors.push(element.name)
+
 	},
 	clearError: event => {
 		const element = event.target
 		const error = element.parentNode.querySelectorAll('.form-error')
-			element.setAttribute('show-error', 0)
-			error[0] && error[0].remove()
+		
+		element.setAttribute('show-error', 0)
+		error[0] && error[0].remove()
+
+		for (let i = 0; i < formErrors.length; i++) {
+			(formErrors[i] == element.name) && formErrors.splice(i, 1);
+		}
 	}
 }
 
