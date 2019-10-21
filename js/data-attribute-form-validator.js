@@ -5,9 +5,7 @@ fields.forEach(field => {
 	field.setAttribute('show-error', 0)
 })
 
-const formErrors = {}
-
-const handleGlobalErrorObject = {
+const formErrors = {
 	pushError: errorField => {
 		const formName = errorField.closest('form').getAttribute('name');
 
@@ -70,7 +68,7 @@ const handleError = {
 	
 		element.getAttribute('show-error') == 1 && element.parentElement.appendChild(errorElement)
 
-		handleGlobalErrorObject.pushError(element)
+		formErrors.pushError(element)
 
 	},
 	clearError: event => {
@@ -80,7 +78,7 @@ const handleError = {
 		element.setAttribute('show-error', 0)
 		error[0] && error[0].remove()
 
-		handleGlobalErrorObject.removeError(element)
+		formErrors.removeError(element)
 	}
 }
 
