@@ -16,7 +16,7 @@
 <body>
 	<form name="contato" action="">
 		<label for="">
-			<input type="text" placeholder="Nome" name="name" data-error="Por favor, insira o seu nome." required>
+			<input type="text" placeholder="Nome" name="name" data-error="Por favor, insira o seu nome.">
 		</label>
 		<label for="">
 			<input type="text" placeholder="Email" name="email" 
@@ -31,16 +31,20 @@
 		<label for="">
 			<input type="tel" placeholder="Cep" name="cep" data-validation="cep" data-error="Por favor, insira seu cep">
 		</label>
+
+		<input type="submit">
 	</form>
 
 	<form action="#" name="trabalho">
 			<label for="">
-				<input type="text" placeholder="Empresa" name="empresa" data-error="Por favor, insira a sua empresa." required>
+				<input type="text" placeholder="Empresa" name="empresa" data-error="Por favor, insira a sua empresa.">
 			</label>
 
 			<label for="">
-				<input type="text" placeholder="Cargo" name="cargo" data-error="Por favor, insira o seu cargo." required>
+				<input type="text" placeholder="Cargo" name="cargo" data-error="Por favor, insira o seu cargo.">
 			</label>
+
+			<input type="submit">
 	</form>
 
 	<script src="./js/data-attribute-form-validator.js"></script>

@@ -18,10 +18,12 @@ const formErrors = {
 	removeError: errorField => {
 		const formName = errorField.closest('form').getAttribute('name')
 
-		for (let i = 0; i < formErrors[formName].length; i++) {
-			
-			if (formErrors[formName][i] == errorField.name) {
-				formErrors[formName].splice(i, 1);
+		if(formErrors[formName]) {
+			for (let i = 0; i < formErrors[formName].length; i++) {
+				
+				if (formErrors[formName][i] == errorField.name) {
+					formErrors[formName].splice(i, 1);
+				}
 			}
 		}
 	}
@@ -69,7 +71,6 @@ const handleError = {
 		element.getAttribute('show-error') == 1 && element.parentElement.appendChild(errorElement)
 
 		formErrors.pushError(element)
-
 	},
 	clearError: event => {
 		const element = event.target
@@ -91,4 +92,18 @@ const validateField = () => {
 	})
 }
 
+const validateForm = () => {
+	document.querySelectorAll('input[type=submit]').forEach(button => {
+		button.addEventListener('click', event => {
+			const formName = event.target.closest('form').getAttribute('name');
+
+			if (formErrors[formName][0]) {
+				event.preventDefault()
+				console.log(event.target)
+			}
+		})
+	})
+}
+
+validateForm()
 validateField()
