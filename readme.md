@@ -10,7 +10,7 @@ Importe o script no final do html
 
 ## Atributos:
 
- -  **data-validation:** *(String: name | phone | email | cep)*: Define qual o tipo de valor que o campo aceitará;
+ -  **data-validation:** *(String: singleName | fullName | phone | email | cep)*: Define qual o tipo de valor que o campo aceitará;
  -  **data-error:** *(String)*: Mensagem de erro que será exibida;
 
  ## Exemplos:

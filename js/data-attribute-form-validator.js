@@ -45,6 +45,8 @@ const validateRequiredFields = event => {
 
 const validatePatterns = event => {
 	const patterns = {
+		singleName: data => /^[A-z]{3,50}/.test(data),
+		fullName: data => /^([a-zA-Z0-9]+|[a-zA-Z0-9]+\s{1}[a-zA-Z0-9]{1,}|[a-zA-Z0-9]+\s{1}[a-zA-Z0-9]{3,}\s{1}[a-zA-Z0-9]{1,})$/.test(data),
 		phone: data => /^\(?[0-9]{2}\)?\s?[0-9]{4,5}-?[0-9]{4}$/.test(data),
 		email: data => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(data),
 		cep: data => /^[0-9]{5}-?[0-9]{3}$/.test(data)
